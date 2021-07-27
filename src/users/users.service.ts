@@ -21,15 +21,21 @@ export class UsersService {
   }
 
   findAll() {
-    return `This action returns all users`;
+    return this.usersRepository.find();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} user`;
+    return this.usersRepository.findOne(+id);
   }
 
-  update(id: number) {
-    return `This action updates a #${id} user`;
+  async update(id:number ,username : string, email : string, password : string, role: string) {
+    const user = await this.usersRepository.findOne(id);
+    user.username =  username;
+    user.email = email;
+    user.password = password;
+    user.role = role;
+    return this.usersRepository.save(user);
+
   }
 
   remove(id: number) {
