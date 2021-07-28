@@ -1,7 +1,9 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { Repository } from 'typeorm';
-import { User } from './entities/user.entity.js';
+import { ValidationPipe } from '../pipes/validation.pipe';
+
+
 var bcrypt = require('bcryptjs');
 
 @Controller('users')
@@ -18,7 +20,7 @@ export class UsersController {
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(password,salt);
     const result = await this.usersService.createUser(username,email,hash,role);
-    return {data:result};
+    return {message:"data berhasil ditambahkan.",data:result};
 
   }
 
@@ -31,7 +33,7 @@ export class UsersController {
   @Get(':id')
   async  findOne(@Param('id') id: string) {
     const result = await this.usersService.findOne(+id);
-     return {data:result};
+    return {data:result};
   }
 
   @Patch(':id')
@@ -39,11 +41,12 @@ export class UsersController {
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(password,salt);
     const result = await this.usersService.update(id,username,email,hash,role);
-    return {data:result};
+    return {message:"data berhasil diedit.",data:result};
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.usersService.remove(+id);
+  async remove(@Param('id') id: string) {
+    await this.usersService.remove(+id);
+    return {message:"data berhasil dihapus.",data:null};
   }
 }

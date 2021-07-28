@@ -22,10 +22,10 @@ import { UsersController } from './users/users.controller';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule implements NestModule{
-  configure(consumer : MiddlewareConsumer){
-    consumer
-    .apply(LoggerMiddleware)
-    .forRoutes(UsersController)
-  }
+export class AppModule {
+  // configure(consumer : MiddlewareConsumer){
+  //   consumer
+  //   .apply(LoggerMiddleware)
+  //   .forRoutes(UsersController)
+  // }
 }

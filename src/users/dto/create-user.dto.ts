@@ -8,9 +8,9 @@ export class CreateUserDto {
   email: string;
 
   @IsNotEmpty()
-  @Max(10)
+  @Max(10,{message:"maksimal 10 karakter"})
   password: string;
 
-   @IsNotEmpty()
+    @IsNotEmpty()
   role: string;
 }
