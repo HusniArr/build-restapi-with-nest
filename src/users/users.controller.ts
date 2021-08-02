@@ -1,9 +1,6 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete , UseGuards, Request} from '@nestjs/common';
 import { UsersService } from './users.service';
 import { Repository } from 'typeorm';
-import { ValidationPipe } from '../pipes/validation.pipe';
-
-
 var bcrypt = require('bcryptjs');
 
 @Controller('users')
@@ -23,6 +20,9 @@ export class UsersController {
     return {message:"data berhasil ditambahkan.",data:result};
 
   }
+
+  
+  
 
   @Get()
   async findAll() {

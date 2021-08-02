@@ -6,6 +6,7 @@ import { ProductsModule } from './products/products.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { LoggerMiddleware } from './common/middleware/logger.middleware';
 import { UsersController } from './users/users.controller';
+import { AuthModule } from './auth/auth.module';
 
 
 @Module({
@@ -18,7 +19,7 @@ import { UsersController } from './users/users.controller';
   "database": "sales",
   "entities": ["dist/**/*.entity{.ts,.js}"],
   "synchronize": true
-  }),UsersModule, ProductsModule],
+  }),UsersModule, ProductsModule, AuthModule],
   controllers: [AppController],
   providers: [AppService],
 })
