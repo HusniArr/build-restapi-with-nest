@@ -13,13 +13,14 @@ export class ProductsService {
     @InjectRepository(Products)
     private productRepository:Repository<Products>,
     ){}
-  create(kd_prd:string,nm_prd:string,hrg_prd:number,stok_prd:number,tgl_expired:string) {
+  create(kd_prd:string,nm_prd:string,hrg_prd:number,stok_prd:number,tgl_expired:string,userId:number) {
     const product = new Products();
     product.kd_prd = kd_prd;
     product.nm_prd = nm_prd;
     product.hrg_prd = hrg_prd;
     product.stok_prd = stok_prd;
     product.tgl_expired = tgl_expired;
+    product.userId = userId;
     return this.productRepository.save(product);
   }
 

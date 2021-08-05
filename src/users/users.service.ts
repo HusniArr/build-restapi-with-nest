@@ -11,12 +11,12 @@ export class UsersService {
     private usersRepository: Repository<User>,
     ){}
 
-  createUser(username : string, email : string, password : string, role: string) {
+  createUser(username : string, email : string, password : string, isAdmin: boolean) {
     const user = new User();
     user.username = username;
     user.email = email;
     user.password = password;
-    user.role = role;
+    user.isadmin = isAdmin;
     return this.usersRepository.save(user);
   }
 
@@ -30,12 +30,12 @@ export class UsersService {
  fetchByUsername(username: string) {
     return this.usersRepository.findOne(username);
   }
-  async update(id:number ,username : string, email : string, password : string, role: string) {
+  async update(id:number ,username : string, email : string, password : string, isAdmin: boolean) {
     const user = await this.usersRepository.findOne(id);
     user.username =  username;
     user.email = email;
     user.password = password;
-    user.role = role;
+    user.isadmin = isAdmin;
     return this.usersRepository.save(user);
 
   }

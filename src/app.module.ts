@@ -7,6 +7,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { LoggerMiddleware } from './common/middleware/logger.middleware';
 import { UsersController } from './users/users.controller';
 import { AuthModule } from './auth/auth.module';
+import { CaslModule } from './casl/casl.module';
 
 
 @Module({
@@ -19,7 +20,7 @@ import { AuthModule } from './auth/auth.module';
   "database": "sales",
   "entities": ["dist/**/*.entity{.ts,.js}"],
   "synchronize": true
-  }),UsersModule, ProductsModule, AuthModule],
+  }),UsersModule, ProductsModule, AuthModule,CaslModule],
   controllers: [AppController],
   providers: [AppService],
 })

@@ -12,11 +12,11 @@ export class UsersController {
     @Body('username') username: string,
     @Body('email') email: string,
     @Body('password') password: string,
-    @Body('role') role: string,
+    @Body('isAdmin') isAdmin: boolean,
     ) {
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(password,salt);
-    const result = await this.usersService.createUser(username,email,hash,role);
+    const result = await this.usersService.createUser(username,email,hash,isAdmin);
     return {message:"data berhasil ditambahkan.",data:result};
 
   }
@@ -37,10 +37,10 @@ export class UsersController {
   }
 
   @Patch(':id')
-  async update(@Param('id') id: number,@Body('username') username: string, @Body('email') email: string, @Body('password') password: string,@Body('role') role: string,) {
+  async update(@Param('id') id: number,@Body('username') username: string, @Body('email') email: string, @Body('password') password: string,@Body('isAdmin') isAdmin: boolean,) {
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(password,salt);
-    const result = await this.usersService.update(id,username,email,hash,role);
+    const result = await this.usersService.update(id,username,email,hash,isAdmin);
     return {message:"data berhasil diedit.",data:result};
   }
 

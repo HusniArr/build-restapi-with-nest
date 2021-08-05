@@ -14,4 +14,6 @@ export class Products {
 	stok_prd:number;
 	@Column()
 	tgl_expired:string;
+	@Column({type:"int"})
+	userId:number;
 }
